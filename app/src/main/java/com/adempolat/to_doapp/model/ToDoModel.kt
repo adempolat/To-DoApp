@@ -11,4 +11,8 @@ data class ToDoModel(
     val priority: Priority?,
     val isChecked:Boolean?
 
-)
+){
+    fun areContentsTheSame(newItem:ToDoModel):Boolean{
+        return this.title==newItem.title && this.description==newItem.description && this.priority==newItem.priority && this.isChecked==newItem.isChecked
+    }
+}

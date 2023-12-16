@@ -8,10 +8,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.adempolat.to_doapp.R
 import com.adempolat.to_doapp.databinding.FragmentHomeBinding
+import com.adempolat.to_doapp.model.ToDoModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(),ToDoClickListener {
     // TODO: Rename and change types of parameters
     private var _binding: FragmentHomeBinding?=null
     private val binding get() = _binding!!
@@ -22,6 +23,9 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding=FragmentHomeBinding.inflate(inflater,container,false)
+        binding.lifecycleOwner=viewLifecycleOwner
+        binding.viewmodel=viewModel
+        binding.toDoClickListener=this
         // Inflate the layout for this fragment
         viewModel.toDoList.observe(viewLifecycleOwner){
             println(it)
@@ -35,6 +39,14 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding
+    }
+
+    override fun onToDoClick(id: Int) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onToDoChecked(toDoModel: ToDoModel) {
+        TODO("Not yet implemented")
     }
 
 }
