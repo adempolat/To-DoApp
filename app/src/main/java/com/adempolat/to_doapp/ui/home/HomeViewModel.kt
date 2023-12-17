@@ -18,9 +18,11 @@ class HomeViewModel @Inject constructor(
 ):AndroidViewModel(application) {
     val toDoList = repository.localDataSource.getAllToDo().asLiveData()
 
-    fun insertToDo(){
+    fun updateToDo(toDoModel: ToDoModel){
+        val updatedToDoModel = toDoModel.copy(isChecked = toDoModel.isChecked?.not())
         viewModelScope.launch {
-            repository.localDataSource.insertToDo(ToDoModel(title = "Deneme", description = "Deenem Açıklama", priority = Priority.HIGH, isChecked = true ))
+            repository.localDataSource.updateToDo(updatedToDoModel)
         }
     }
+
 }

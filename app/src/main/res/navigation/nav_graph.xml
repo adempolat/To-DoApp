@@ -8,5 +8,18 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.adempolat.to_doapp.ui.home.HomeFragment"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_newandEditFragment"
+            app:destination="@id/newandEditFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newandEditFragment"
+        android:name="com.adempolat.to_doapp.ui.newEndEdit.NewandEditFragment"
+        tools:layout="@layout/fragment_newand_edit">
+        <argument
+            android:name="toDoId"
+            android:defaultValue="-1"
+            app:argType="integer" />
+    </fragment>
 </navigation>

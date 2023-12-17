@@ -13,7 +13,7 @@ import com.adempolat.to_doapp.ui.home.HomeListAdapter
 import com.adempolat.to_doapp.ui.home.ToDoClickListener
 
 @BindingAdapter("setItemTodoPriorityTint")
-fun setItemTodoPriorityTint(imageView: ImageView,priority: Priority){
+fun setItemTodoPriorityTint(imageView: ImageView,priority: Priority?){
     val context=imageView.context
     val color = when(priority){
         Priority.HIGH -> R.color.priority_high
@@ -25,7 +25,7 @@ fun setItemTodoPriorityTint(imageView: ImageView,priority: Priority){
 }
 
 @BindingAdapter("toDoList","setOnClickListener")
-fun setHomeRecylerViewAdapter(recyclerView: RecyclerView,list: List<ToDoModel>,toDoClickListener: ToDoClickListener){
+fun setHomeRecyclerViewAdapter(recyclerView: RecyclerView,list: List<ToDoModel>?,toDoClickListener: ToDoClickListener){
     recyclerView.apply {
         if (this.adapter==null){
             adapter= HomeListAdapter(toDoClickListener).apply { submitList(list) }
