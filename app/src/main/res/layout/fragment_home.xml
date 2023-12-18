@@ -33,6 +33,8 @@
             android:id="@+id/fragment_home_recycler_view"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            app:searchQuery="@{Viewmodel.searchQuery}"
+            app:searchTodoList="@{Viewmodel.searchTodoList}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:toDoList="@{Viewmodel.toDoList}"
             app:setOnClickListener="@{ToDoClickListener}"

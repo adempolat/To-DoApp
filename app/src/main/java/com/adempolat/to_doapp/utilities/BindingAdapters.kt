@@ -21,16 +21,36 @@ fun setItemTodoPriorityTint(imageView: ImageView,priority: Priority?){
         else -> R.color.seed
     }
 
-    ImageViewCompat.setImageTintList(imageView, ColorStateList.valueOf(ContextCompat.getColor(context,color)))
+    ImageViewCompat.setImageTintList(
+        imageView,
+        ColorStateList.valueOf(ContextCompat.getColor(context,color)))
 }
 
-@BindingAdapter("toDoList","setOnClickListener")
-fun setHomeRecyclerViewAdapter(recyclerView: RecyclerView,list: List<ToDoModel>?,toDoClickListener: ToDoClickListener){
+@BindingAdapter("toDoList","setOnClickListener","searchQuery","searchTodoList")
+fun setHomeRecyclerViewAdapter(recyclerView: RecyclerView,
+                               list: List<ToDoModel>?,
+                               toDoClickListener: ToDoClickListener,
+                               searchQuery:String,
+                               searchList: List<ToDoModel>?){
     recyclerView.apply {
         if (this.adapter==null){
-            adapter= HomeListAdapter(toDoClickListener).apply { submitList(list) }
+            adapter= HomeListAdapter(toDoClickListener).apply {
+                submitList(
+                if (searchQuery.isEmpty()){
+                    list
+                }else{
+                    searchList
+                }
+            )
+            }
         }else{
-            (this.adapter as HomeListAdapter).submitList(list)
+            (this.adapter as HomeListAdapter).submitList(
+                if (searchQuery.isEmpty()){
+                    list
+                    }else{
+                        searchList
+                }
+                    )
         }
     }
 }
